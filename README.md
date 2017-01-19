@@ -8,7 +8,9 @@ So, instead of writing a code similar to (from the ASP.NET Core template):
 
 ```
 <environment names="Development">
-    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/site1.css" />
+    <link rel="stylesheet" href="~/css/site2.css" />
+    <link rel="stylesheet" href="~/css/site3.css" />
 </environment>
 <environment names="Staging,Production">
     <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
