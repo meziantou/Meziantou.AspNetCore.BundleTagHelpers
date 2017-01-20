@@ -28,6 +28,8 @@ You only write this:
 
 *Note: This goal of this project is not to minify files, but only to generate the `script` and link `tags`. The BundleMinifier extension does generate min files.*
 
+The code in the directory `BundlerMinifier` comes from the [BundlerMinifier repo](https://github.com/madskristensen/BundlerMinifier), so the file is interpretted as the extension does.
+
 # How to use
 
 - Install NuGet package `Meziantou.AspNetCore.BundleTagHelpers`
