@@ -61,3 +61,7 @@ public void ConfigureServices(IServiceCollection services)
     });
 }
 ```
+
+# Blog posts
+
+- <http://www.softfluent.com/blog/dev/2017/01/20/Minify-CSS-and-JavaScript-files-with-Visual-Studio-and-ASP-NET-Core>
