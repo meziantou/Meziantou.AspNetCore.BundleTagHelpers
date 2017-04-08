@@ -70,6 +70,9 @@ namespace Meziantou.AspNetCore.BundleTagHelpers
                 foreach (var file in files)
                 {
                     var src = GetSrc(file);
+                    if (src == null)
+                        continue;
+
                     if (_options.AppendVersion)
                     {
                         src = GetVersionedSrc(src);
@@ -119,13 +122,20 @@ namespace Meziantou.AspNetCore.BundleTagHelpers
 
         private string GetSrc(string path)
         {
-            var wwwUri = new Uri(_hostingEnvironment.WebRootPath.DemandTrailingPathSeparatorChar());
-            var fileUri = new Uri(path);
+            // Doesn't work on linux and path are absolutes
+            //var wwwUri = new Uri(_hostingEnvironment.WebRootPath.DemandTrailingPathSeparatorChar());
+            //var fileUri = new Uri(path);
+            //var relative = wwwUri.MakeRelativeUri(fileUri);
 
-            var relative = wwwUri.MakeRelativeUri(fileUri);
+            var root = FileHelpers.NormalizePath(_hostingEnvironment.WebRootPath.DemandTrailingPathSeparatorChar());
+            var filePath = FileHelpers.NormalizePath(path);
+            if (filePath.StartsWith(root))
+            {
+                var urlHelper = _urlHelperFactory.GetUrlHelper(ViewContext);
+                return urlHelper.Content("~/" + filePath.Substring(root.Length).Replace('\\', '/'));
+            }
 
-            var urlHelper = _urlHelperFactory.GetUrlHelper(ViewContext);
-            return urlHelper.Content("~/" + relative);
+            return null;
         }
     }
 }
