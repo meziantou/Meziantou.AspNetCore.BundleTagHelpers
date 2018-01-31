@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text.Encodings.Web;
 using BundlerMinifier;
 using Microsoft.AspNetCore.Hosting;
@@ -94,7 +95,17 @@ namespace Meziantou.AspNetCore.BundleTagHelpers
         {
             if (_options.UseMinifiedFiles)
             {
-                return new[] { bundle.OutputFileUrl };
+                var bundlePath = bundle.OutputFileUrl;
+                if (_options.TargetBundleMinFile)
+                {
+                    var extension = Path.GetExtension(bundlePath);
+                    if (extension != null)
+                    {
+                        bundlePath = Path.ChangeExtension(bundlePath, ".min" + extension);
+                    }
+                }
+
+                return new[] { bundlePath };
             }
 
             return bundle.InputFileUrls;
