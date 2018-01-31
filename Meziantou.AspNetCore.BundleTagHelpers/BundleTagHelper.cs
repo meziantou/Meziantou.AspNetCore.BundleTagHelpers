@@ -93,10 +93,10 @@ namespace Meziantou.AspNetCore.BundleTagHelpers
 
         private IEnumerable<string> GetFiles(Bundle bundle)
         {
-            if (_options.UseMinifiedFiles)
+            if (_options.UseBundles)
             {
                 var bundlePath = bundle.OutputFileUrl;
-                if (_options.TargetBundleMinFile)
+                if (_options.UseMinifiedFiles)
                 {
                     var extension = Path.GetExtension(bundlePath);
                     if (extension != null)

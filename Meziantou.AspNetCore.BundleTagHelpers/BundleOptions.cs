@@ -4,19 +4,18 @@ namespace Meziantou.AspNetCore.BundleTagHelpers
 {
     public class BundleOptions
     {
+        public bool UseBundles { get; set; }
         public bool UseMinifiedFiles { get; set; }
-        public bool AppendVersion { get; set; }
-
-        // Property determining whether we'll target bundle.js or bundle.min.js file
-        public bool TargetBundleMinFile { get; set; }
+        public bool AppendVersion { get; set; }        
 
         internal void Configure(IHostingEnvironment env)
         {
             if (env != null)
             {
-                UseMinifiedFiles = !env.IsDevelopment();
-                AppendVersion = !env.IsDevelopment();
-                TargetBundleMinFile = false;
+                var isDevelopment = env.IsDevelopment();
+                UseBundles = !isDevelopment;
+                UseMinifiedFiles = !isDevelopment;
+                AppendVersion = !isDevelopment;
             }
         }
     }
