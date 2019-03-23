@@ -1,6 +1,8 @@
 Meziantou.AspNetCore.BundleTagHelpers
 ======
 
+> The code of this TagHelper has moved to the BundlerMinifier repository: https://github.com/madskristensen/BundlerMinifier
+
 When you use the Visual Studio extension `BundleMinifier` ([download](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.BundlerMinifier)), 
 you have to declare the bundles in the `bundleconfig.json` file (input files, output file and minification options).
 The idea of this project is to generate the `script` and `link` tags by using the list of bundles define in the `bundleconfig.json` file.
